@@ -28,7 +28,7 @@ class CreateUsersTable extends Migration
             $table->integer('likes_count')->default(0)->comment('user 点赞数量');
             $table->integer('followers_count')->default(0)->comment('user 关注数量');
             $table->integer('followerings_count')->default(0)->comment('user 被关注数量');
-            $table->json('settings')->nullabel();
+            $table->json('settings')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
