@@ -77,7 +77,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'zh_cn',
 
     /*
     |--------------------------------------------------------------------------
@@ -178,6 +178,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Naux\Mail\SendCloudServiceProvider::class,//邮件发送驱动
+        Laracasts\Flash\FlashServiceProvider::class,
 
     ],
 
