@@ -34,7 +34,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    发送重置链接
+                                    发送重置密码链接
                                 </button>
                             </div>
                         </div>
