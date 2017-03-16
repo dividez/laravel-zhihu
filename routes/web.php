@@ -20,3 +20,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 Route::get('email/verify/{token}',['as'=>'email.verify','uses'=>'EmailController@verify']);
+
+Route::resource('/questions','QuestionsController');
