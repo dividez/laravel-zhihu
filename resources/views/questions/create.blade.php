@@ -20,7 +20,8 @@
                                 @endif
                             </div>
                             <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
-                                <script id="container" name="body" type="text/plain">
+                                <label for="container">内容</label>
+                                <script id="container" name="body" type="text/plain" style="height:200px">
                                     {!! old('body') !!}
                                 </script>
                                 @if ($errors->has('body'))
