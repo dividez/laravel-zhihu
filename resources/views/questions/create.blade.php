@@ -19,8 +19,14 @@
                                     </span>
                                 @endif
                             </div>
+                            <div class="from-group">
+                                <label for="select">标签</label>
+                                <select id="select" class="js-example-basic-multiple form-control js-example-placeholder-multiple" multiple="multiple">
+                                </select>
+                            </div>
                             <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
-                                <script id="container" name="body" type="text/plain">
+                                <label for="container">内容</label>
+                                <script id="container" name="body" type="text/plain" style="height:200px">
                                     {!! old('body') !!}
                                 </script>
                                 @if ($errors->has('body'))
@@ -50,6 +56,47 @@
         });
         ue.ready(function() {
             ue.execCommand('serverparam', '_token', '{{ csrf_token() }}'); // 设置 CSRF token.
+        });
+    </script>
+@endsection
+@section('script')
+    <script type="text/javascript">
+        $(".js-example-basic-multiple").select2();
+        function formatTopic (topic) {
+            return "<div class='select2-result-repository clearfix'>" +
+            "<div class='select2-result-repository__meta'>" +
+            "<div class='select2-result-repository__title'>" +
+            topic.name ? topic.name : "Laravel"   +
+            "</div></div></div>";
+        }
+
+        function formatTopicSelection (topic) {
+            return topic.name || topic.text;
+        }
+
+        $(".js-example-placeholder-multiple").select2({
+            tags: true,
+            placeholder: '选择相关话题',
+            minimumInputLength: 2,
+            ajax: {
+                url: '/api/topics',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        q: params.term
+                    };
+                },
+                processResults: function (data, params) {
+                    return {
+                        results: data
+                    };
+                },
+                cache: true
+            },
+            templateResult: formatTopic,
+            templateSelection: formatTopicSelection,
+            escapeMarkup: function (markup) { return markup; }
         });
     </script>
 @endsection
