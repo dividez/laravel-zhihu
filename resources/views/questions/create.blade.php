@@ -21,7 +21,7 @@
                             </div>
                             <div class="from-group">
                                 <label for="select">标签</label>
-                                <select id="select" class="js-example-basic-multiple form-control js-example-placeholder-multiple" multiple="multiple">
+                                <select id="select" name="topics[]" class="js-example-basic-multiple form-control js-example-placeholder-multiple" multiple="multiple">
                                 </select>
                             </div>
                             <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
