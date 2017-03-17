@@ -47,6 +47,7 @@ class QuestionsController extends Controller
             'body' => $request->get('body'),
             'user_id' => Auth::id()
         ];
+        $this->test();
         $question = Question::create($data);
         return redirect()->route('questions.show',[$question->id]);
     }

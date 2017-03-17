@@ -19,6 +19,14 @@
                                     </span>
                                 @endif
                             </div>
+                            <div class="from-group">
+                                <label for="select">标签</label>
+                                <select id="select" class="js-example-basic-multiple form-control" multiple="multiple">
+                                    <option value="AL">Alabama</option>
+                                    ...
+                                    <option value="WY">Wyoming</option>
+                                </select>
+                            </div>
                             <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
                                 <label for="container">内容</label>
                                 <script id="container" name="body" type="text/plain" style="height:200px">
@@ -52,5 +60,10 @@
         ue.ready(function() {
             ue.execCommand('serverparam', '_token', '{{ csrf_token() }}'); // 设置 CSRF token.
         });
+    </script>
+@endsection
+@section('script')
+    <script type="text/javascript">
+        $(".js-example-basic-multiple").select2();
     </script>
 @endsection

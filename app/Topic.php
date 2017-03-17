@@ -8,7 +8,7 @@ class Topic extends Model
 {
     //
     protected $fillable = [
-        'name', 'questions_count'
+        'name', 'questions_count','bio'
     ];
 
     public function questions()
