@@ -6,9 +6,17 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Class EmailController
+ * @package App\Http\Controllers
+ */
 class EmailController extends Controller
 {
-    //
+    /**
+     * @param $token
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @author zhangpengyi
+     */
     public function verify($token)
     {
         $user = User::where('confirmation_token',$token)->first();
