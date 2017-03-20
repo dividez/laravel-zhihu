@@ -32,6 +32,15 @@ class QuestionRepository
     }
 
     /**
+     * @param $id
+     * @return mixed
+     * @author zhangpengyi
+     */
+    public function byId($id)
+    {
+        return Question::find($id);
+    }
+    /**
      * @param array $topics
      * @return array
      * @author zhangpengyi

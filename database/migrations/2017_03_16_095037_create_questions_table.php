@@ -16,7 +16,7 @@ class CreateQuestionsTable extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title')->comment();
-            $table->string('body')->comment();
+            $table->text('body')->comment();
             $table->integer('user_id')->unsigned()->comment('评论数量');
             $table->integer('comments_count')->default(0)->comment('评论数量');
             $table->integer('followers_count')->default(0)->comment('关注数量');
