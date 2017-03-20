@@ -35,7 +35,8 @@ class QuestionsController extends Controller
      */
     public function index()
     {
-        return 'index';
+        $questions = $this->questionRepository->getQuestionsFeed();
+        return view('questions.index',['questions' => $questions]);
     }
 
     /**
@@ -88,29 +89,47 @@ class QuestionsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $question = $this->questionRepository->byId($id);
+        if (Auth::user()->owns($question)) {
+            return view('questions.edit',['question' => $question]);
+        }
+        return back();
     }
 
+
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param StoreQuestionRequest $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @author zhangpengyi
      */
-    public function update(Request $request, $id)
+    public function update(StoreQuestionRequest $request, $id)
     {
-        //
+        $topics = $this->questionRepository->normalizeTopic($request->get('topics'));
+        $question = $this->questionRepository->byId($id);
+        $question->update([
+            'title' => $request->get('title'),
+            'body' => $request->get('body')
+        ]);
+        $question->topic()->sync($topics);
+        return redirect()->route('questions.show',[$question->id]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @author zhangpengyi
      */
     public function destroy($id)
     {
         //
+        $question = $this->questionRepository->byId($id);
+        if (Auth::user()->owns($question)) {
+            $question->delete();
+            return redirect(route('questions.index'));
+        }
+        return back();
     }
 }

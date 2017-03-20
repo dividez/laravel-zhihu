@@ -32,6 +32,15 @@ class QuestionRepository
     }
 
     /**
+     * @param $id
+     * @return mixed
+     * @author zhangpengyi
+     */
+    public function byId($id)
+    {
+        return Question::find($id);
+    }
+    /**
      * @param array $topics
      * @return array
      * @author zhangpengyi
@@ -46,5 +55,14 @@ class QuestionRepository
             $newTopic = Topic::create(['name'=>$topic,'questions_count' => 1]);
             return $newTopic->id;
         })->toArray();
+    }
+
+    /**
+     * @return mixed
+     * @author zhangpengyi
+     */
+    public function getQuestionsFeed()
+    {
+        return Question::published()->latest('updated_at')->with('user')->get();
     }
 }
