@@ -6,21 +6,12 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         {{$question->title}}
-                    </div>
-                    <div class="post-meta">
                         @foreach($question->topic as $value)
-                            <span class="post-category">
-                                <i class="fa fa-folder-o"></i>
-                                <a href="#">
-                                {{$value->name}}
-                                </a>
-                                </span>
+                            <a class="topic" href="/topic/{{$value->id}}">{{$value->name}}</a>
                         @endforeach
                     </div>
                     <div class="panel-body">
-                        <div class="post-detail-content">
-                            {!! $question->body !!}
-                        </div>
+                        {!! $question->body !!}
                     </div>
                 </div>
             </div>
