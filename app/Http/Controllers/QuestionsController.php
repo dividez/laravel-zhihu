@@ -35,7 +35,8 @@ class QuestionsController extends Controller
      */
     public function index()
     {
-        return 'index';
+        $questions = $this->questionRepository->getQuestionsFeed();
+        return view('questions.index',['questions' => $questions]);
     }
 
     /**
@@ -117,11 +118,18 @@ class QuestionsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @author zhangpengyi
      */
     public function destroy($id)
     {
         //
+        $question = $this->questionRepository->byId($id);
+        if (Auth::user()->owns($question)) {
+            $question->delete();
+            return redirect(route('questions.index'));
+        }
+        return back();
     }
 }

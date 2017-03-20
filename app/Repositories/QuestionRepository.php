@@ -56,4 +56,13 @@ class QuestionRepository
             return $newTopic->id;
         })->toArray();
     }
+
+    /**
+     * @return mixed
+     * @author zhangpengyi
+     */
+    public function getQuestionsFeed()
+    {
+        return Question::published()->latest('updated_at')->with('user')->get();
+    }
 }
