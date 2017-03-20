@@ -13,6 +13,7 @@
     <!-- Styles -->
     <link href="{{elixir('css/app.css')}}" rel="stylesheet">
     <link href="{{elixir('css/select2.min.css')}}" rel="stylesheet">
+    <link href="{{elixir('css/topic.css')}}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
