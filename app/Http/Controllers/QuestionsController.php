@@ -77,7 +77,7 @@ class QuestionsController extends Controller
      */
     public function show($id)
     {
-        $question = $this->questionRepository->bgIdWithTopics($id);
+        $question = $this->questionRepository->bgIdWithTopicsAndAnswers($id);
         return view('questions.show',['question' => $question]);
     }
 
