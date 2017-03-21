@@ -16,9 +16,9 @@ class QuestionRepository
      * @return mixed
      * @author zhangpengyi
      */
-    public function bgIdWithTopics($id)
+    public function bgIdWithTopicsAndAnswers($id)
     {
-        return Question::where(['id' => $id])->with('topic')->first();
+        return Question::where(['id' => $id])->with(['topic','answers'])->first();
     }
 
     /**

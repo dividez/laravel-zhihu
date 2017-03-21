@@ -180,6 +180,7 @@ return [
         Naux\Mail\SendCloudServiceProvider::class,//邮件发送驱动
         Laracasts\Flash\FlashServiceProvider::class,
         Overtrue\LaravelUEditor\UEditorServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
     ],
 
