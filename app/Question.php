@@ -25,6 +25,14 @@ class Question extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @author zhangpengyi
+     */
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      * @author zhangpengyi
      */
