@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'QuestionsController@index');
 
 Auth::routes();
 
@@ -24,3 +22,5 @@ Route::get('email/verify/{token}',['as'=>'email.verify','uses'=>'EmailController
 Route::resource('/questions','QuestionsController');
 
 Route::post('/question/{question}/answer','AnswersController@store')->name('question.answer');
+
+Route::get('question/{question}/follow','QuestionFollowController@follow')->name('question.follow');
