@@ -44,6 +44,36 @@ class User extends Authenticatable
         return $this->id == $model->user_id;
     }
 
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @author zhangpengyi
+     */
+    public function follows()
+    {
+        return $this->belongsToMany(Question::class,'user_question')->withTimestamps();
+    }
+
+    /**
+     * @param $question
+     * @return array
+     * @author zhangpengyi
+     */
+    public function followThis($question)
+    {
+        return $this->follows()->toggle($question);
+    }
+
+    /**
+     * @param $question
+     * @return bool
+     * @author zhangpengyi
+     */
+    public function followed($question)
+    {
+        return !! $this->follows()->where('question_id',$question)->count();
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      * @author zhangpengyi
@@ -52,6 +82,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Answer::class);
     }
+
     /**
      * @param string $token
      * @author zhangpengyi

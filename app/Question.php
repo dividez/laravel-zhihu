@@ -32,6 +32,7 @@ class Question extends Model
     {
         return $this->hasMany(Answer::class);
     }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      * @author zhangpengyi
@@ -39,6 +40,15 @@ class Question extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @author zhangpengyi
+     */
+    public function followers()
+    {
+        return $this->belongsToMany(User::class,'user_question')->withTimestamps();
     }
 
     /**
