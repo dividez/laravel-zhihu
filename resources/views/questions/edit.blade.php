@@ -46,6 +46,8 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
     <script type="text/javascript">
         var ue = UE.getEditor('container',{
             toolbars: [
@@ -61,10 +63,6 @@
         ue.ready(function() {
             ue.execCommand('serverparam', '_token', '{{ csrf_token() }}'); // 设置 CSRF token.
         });
-    </script>
-@endsection
-@section('script')
-    <script type="text/javascript">
         $(".js-example-basic-multiple").select2();
         function formatTopic (topic) {
             return "<div class='select2-result-repository clearfix'>" +
