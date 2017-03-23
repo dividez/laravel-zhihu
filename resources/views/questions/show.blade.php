@@ -88,6 +88,8 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
     <script type="text/javascript">
         var ue = UE.getEditor('container',{
             toolbars: [
