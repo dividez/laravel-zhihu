@@ -110,4 +110,23 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(self::class,'followers','follower_id','followed_id')->withTimestamps();
     }
+
+    /**
+     * @param $user
+     * @return array
+     * @author zhangpengyi
+     */
+    public function followThisUser($user)
+    {
+        return $this->followers()->toggle($user);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @author zhangpengyi
+     */
+    public function followersUser()
+    {
+        return $this->belongsToMany(self::class,'followers','followed_id','follower_id')->withTimestamps();
+    }
 }
