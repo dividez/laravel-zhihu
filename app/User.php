@@ -100,4 +100,14 @@ class User extends Authenticatable
             $message->to($this->email);
         });
     }
+
+    /**
+     * 声明用户互相关注关系
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @author zhangpengyi
+     */
+    public function followers()
+    {
+        return $this->belongsToMany(self::class,'followers','follower_id','followed_id')->withTimestamps();
+    }
 }
