@@ -38,3 +38,15 @@ a.topic:hover {
 .question-follow {
     text-align: center;
 }
+
+.user-statics , .user-actions {
+    margin-top: 20px;
+}
+
+.user-statics {
+    display: flex;
+}
+
+.statics-item {
+    padding: 2px 20px;
+}
