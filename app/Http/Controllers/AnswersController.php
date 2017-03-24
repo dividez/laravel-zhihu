@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAnswerRequest;
-use App\Repositories\AnswerRepositories;
+use App\Repositories\AnswerRepository;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -14,7 +14,7 @@ use Auth;
 class AnswersController extends Controller
 {
     /**
-     * @var AnswerRepositories
+     * @var AnswerRepository
      */
     protected $answer;
 
@@ -22,7 +22,7 @@ class AnswersController extends Controller
      * AnswersController constructor.
      * @param $answer
      */
-    public function __construct(AnswerRepositories $answer)
+    public function __construct(AnswerRepository $answer)
     {
         $this->answer = $answer;
     }

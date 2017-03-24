@@ -15,7 +15,7 @@ use App\Answer;
  * Class AnswerRepositories
  * @package App\Repositories
  */
-class AnswerRepositories
+class AnswerRepository
 {
     /**
      * @param array $data
