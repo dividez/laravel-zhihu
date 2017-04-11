@@ -13,7 +13,7 @@ use Naux\Mail\SendCloudTemplate;
 
 class Mailer
 {
-    public function sendTo($template, $email, array $data)
+    protected function sendTo($template, $email, array $data)
     {
         $content = new SendCloudTemplate($template, $data);
 
