@@ -11,9 +11,18 @@ namespace App\Channels;
 
 use Illuminate\Notifications\Notification;
 
+/**
+ * Class SendcloudChannel
+ * @package App\Channels
+ */
 class SendcloudChannel
 {
-    public function send($notifiable,Notification $notification)
+    /**
+     * @param $notifiable
+     * @param Notification $notification
+     * @author zhangpengyi
+     */
+    public function send($notifiable, Notification $notification)
     {
         $message = $notification->toSendcloud($notifiable);
     }

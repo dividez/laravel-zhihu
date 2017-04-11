@@ -11,6 +11,10 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Naux\Mail\SendCloudTemplate;
 use Mail;
 
+/**
+ * Class NewUserFollowNotification
+ * @package App\Notifications
+ */
 class NewUserFollowNotification extends Notification
 {
     use Queueable;
@@ -63,6 +67,11 @@ class NewUserFollowNotification extends Notification
         ];
     }
 
+    /**
+     * @param $notifiable
+     * @return array
+     * @author zhangpengyi
+     */
     public function toDatabase($notifiable)
     {
         return [
@@ -70,6 +79,10 @@ class NewUserFollowNotification extends Notification
         ];
     }
 
+    /**
+     * @param $notifiable
+     * @author zhangpengyi
+     */
     public function toSendcloud($notifiable)
     {
         // 模板变量
