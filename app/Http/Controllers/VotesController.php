@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Answer;
+use App\Repositories\AnswerRepository;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class VotesController extends Controller
      * VotesController constructor.
      * @param $answer
      */
-    public function __construct(Answer $answer)
+    public function __construct(AnswerRepository $answer)
     {
         $this->answer = $answer;
     }
@@ -34,17 +35,18 @@ class VotesController extends Controller
     public function vote()
     {
 
+        $answer = $this->answer->byId(request('answer'));
         $voted = Auth::guard('api')->user()->voteFor(request('answer'));
 
         if (count($voted['attached']) > 0) {
-            $userToFollow->notify(new NewUserFollowNotification());
-            $userToFollow->increment('followers_count');
 
-            return response()->json(['followed' => true]);
+            $answer->increment('votes_count');
+
+            return response()->json(['voted' => true]);
         }
 
-        $userToFollow->decrement('followers_count');
+        $answer->decrement('votes_count');
 
-        return response()->json(['followed' => false]);
+        return response()->json(['voted' => false]);
     }
 }

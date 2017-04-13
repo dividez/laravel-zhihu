@@ -26,4 +26,14 @@ class AnswerRepository
     {
         return Answer::create($data);
     }
+
+    /**
+     * @param $id
+     * @return mixed
+     * @author zhangpengyi
+     */
+    public function byId($id)
+    {
+        return Answer::find($id);
+    }
 }
