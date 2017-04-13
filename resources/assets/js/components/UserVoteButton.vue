@@ -27,8 +27,9 @@
         },
         methods:{
             follow() {
-                this.$http.post('/api/user/vote',{'answer':this.answer}).then(respond => {
-                    this.voted = respond.data.voted
+                this.$http.post('/api/answer/vote',{'answer':this.answer}).then(respond => {
+                    this.voted = respond.data.voted;
+                    this.count ++
                 });
             }
         }
