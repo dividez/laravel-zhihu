@@ -121,4 +121,33 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(self::class,'followers','followed_id','follower_id')->withTimestamps();
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @author zhangpengyi
+     */
+    public function votes()
+    {
+        return $this->belongsToMany(Answer::class,'votes')->withTimestamps();
+    }
+
+    /**
+     * @param $answer
+     * @return array
+     * @author zhangpengyi
+     */
+    public function voteFor($answer)
+    {
+        return $this->votes()->toggle($answer);
+    }
+
+    /**
+     * @param $answer
+     * @return bool
+     * @author zhangpengyi
+     */
+    public function haVoteFor($answer)
+    {
+        return !! $this->votes()->where('answer_id',$answer)->count();
+    }
 }
