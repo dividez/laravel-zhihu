@@ -11,8 +11,8 @@
     export default {
         props:['question'],
         mounted() {
-            this.$http.post('/api/question/follower',{'question':this.question}).then(respond => {
-               this.followed = respond.data.followed
+            this.$http.post('/api/question/follower',{'question':this.question}).then(response => {
+               this.followed = response.data.followed
             });
         },
         data() {
@@ -27,8 +27,8 @@
         },
         methods:{
             follow() {
-                this.$http.post('/api/question/follow',{'question':this.question}).then(respond => {
-                    this.followed = respond.data.followed
+                this.$http.post('/api/question/follow',{'question':this.question}).then(response => {
+                    this.followed = response.data.followed
                 });
             }
         }

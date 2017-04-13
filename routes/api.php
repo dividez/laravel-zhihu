@@ -46,4 +46,4 @@ Route::post('/question/follow', function (Request $request) {
 Route::get('/user/followers/{id}','FollowersController@index');
 Route::post('/user/follow','FollowersController@follow');
 Route::post('/answer/{id}/votes/users','VotesController@users');
-Route::post('/api/answer/vote','VotesController@vote');
+Route::post('/answer/vote','VotesController@vote');
