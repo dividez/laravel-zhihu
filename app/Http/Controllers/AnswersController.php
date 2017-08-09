@@ -31,7 +31,6 @@ class AnswersController extends Controller
      * @param StoreAnswerRequest $request
      * @param $question
      * @return \Illuminate\Http\RedirectResponse
-     * @author zhangpengyi
      */
     public function store(StoreAnswerRequest $request, $question)
     {

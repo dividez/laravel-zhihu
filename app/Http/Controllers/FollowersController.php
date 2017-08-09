@@ -30,7 +30,6 @@ class FollowersController extends Controller
     /**
      * @param $id
      * @return \Illuminate\Http\JsonResponse
-     * @author zhangpengyi
      */
     public function index($id)
     {
@@ -44,7 +43,6 @@ class FollowersController extends Controller
 
     /**
      * @return \Illuminate\Http\JsonResponse
-     * @author zhangpengyi
      */
     public function follow()
     {
