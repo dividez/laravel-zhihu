@@ -24,7 +24,7 @@ class QuestionsController extends Controller
      */
     public function __construct(QuestionRepository $questionRepository)
     {
-        $this->middleware('auth')->except(['index','show']);
+        $this->middleware('auth')->except(['index', 'show']);
         $this->questionRepository = $questionRepository;
     }
 
@@ -36,7 +36,7 @@ class QuestionsController extends Controller
     public function index()
     {
         $questions = $this->questionRepository->getQuestionsFeed();
-        return view('questions.index',['questions' => $questions]);
+        return view('questions.index', ['questions' => $questions]);
     }
 
     /**
@@ -50,48 +50,45 @@ class QuestionsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
      * @param StoreQuestionRequest $request
      * @return \Illuminate\Http\RedirectResponse
-     * @author zhangpengyi
      */
     public function store(StoreQuestionRequest $request)
     {
         $topics = $this->questionRepository->normalizeTopic($request->get('topics'));
-        $data =[
+        $data = [
             'title' => $request->get('title'),
             'body' => $request->get('body'),
             'user_id' => Auth::id()
         ];
         $question = $this->questionRepository->create($data);
         $question->topic()->attach($topics);
-        return redirect()->route('questions.show',[$question->id]);
+        return redirect()->route('questions.show', [$question->id]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $question = $this->questionRepository->bgIdWithTopicsAndAnswers($id);
-        return view('questions.show',['question' => $question]);
+        return view('questions.show', ['question' => $question]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $question = $this->questionRepository->byId($id);
         if (Auth::user()->owns($question)) {
-            return view('questions.edit',['question' => $question]);
+            return view('questions.edit', ['question' => $question]);
         }
         return back();
     }
@@ -112,7 +109,7 @@ class QuestionsController extends Controller
             'body' => $request->get('body')
         ]);
         $question->topic()->sync($topics);
-        return redirect()->route('questions.show',[$question->id]);
+        return redirect()->route('questions.show', [$question->id]);
     }
 
     /**
