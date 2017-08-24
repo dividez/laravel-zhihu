@@ -7,13 +7,14 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 class ExampleTest extends TestCase
 {
     /**
-     * A basic functional test example.
+     * 基本测试
      *
      * @return void
      */
     public function testBasicExample()
     {
         $this->visit('/')
-             ->see('Laravel');
+            ->see('zhihu');
     }
+
 }
